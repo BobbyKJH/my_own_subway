@@ -1,9 +1,14 @@
-import React from "react";
 import ReactDOM from "react-dom/client";
+
 import App from "./App";
 
+import { RecoilRoot } from "recoil";
+
+import { GlobalStyle } from "./style/common/Global.styled";
+
 ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
-  <React.StrictMode>
+  <RecoilRoot>
+    <GlobalStyle />
     <App />
-  </React.StrictMode>
+  </RecoilRoot>
 );
