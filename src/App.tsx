@@ -1,5 +1,29 @@
+import { BrowserRouter, Route, Routes } from "react-router-dom";
+
+import MainPage from "./pages/MainPage";
+import MenuPage from "./pages/MenuPage";
+import MakePage from "./pages/MakePage";
+import MyPage from "./pages/MyPage";
+
+import Header from "./components/common/Header";
+
+import { Box } from "@mui/material";
+
 const App = () => {
-  return <div className="App">1 </div>;
+  return (
+    <BrowserRouter>
+      <Header />
+
+      <Box component="main" sx={{ pt: { xs: 2, sm: 3 } }}>
+        <Routes>
+          <Route path="/" element={<MainPage />} />
+          <Route path="/menu" element={<MenuPage />} />
+          <Route path="/make" element={<MakePage />} />
+          <Route path="/mypage" element={<MyPage />} />
+        </Routes>
+      </Box>
+    </BrowserRouter>
+  );
 };
 
 export default App;
