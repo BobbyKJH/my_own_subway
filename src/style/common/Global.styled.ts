@@ -22,7 +22,7 @@ time, mark, audio, video {
   font-size: 100%;
   flex-wrap: wrap;
   font-family: 'Gothic A1', sans-serif;
-  font-weight: 900;
+  font-weight: 700;
   white-space: pre-line;
 }
 article, aside, details, figcaption, figure,
@@ -51,8 +51,7 @@ table {
   border-spacing: 0;
 }
 *{
-}
-body{
+font-family: 'Gothic A1', sans-serif;
 }
 a{
   text-decoration: none;
