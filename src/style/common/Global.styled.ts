@@ -23,7 +23,6 @@ time, mark, audio, video {
   flex-wrap: wrap;
   font-family: 'Gothic A1', sans-serif;
   font-weight: 700;
-  white-space: pre-line;
 }
 article, aside, details, figcaption, figure,
 footer, header, hgroup, menu, nav, section {
