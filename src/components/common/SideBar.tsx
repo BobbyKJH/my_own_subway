@@ -1,71 +1,106 @@
 import { useRecoilState } from "recoil";
-import { HeaderOpen } from "../../atom/atom";
+import { sideBarOpen } from "../../atom/atom";
 
 import { pathNav } from "../../common/utils";
 
-import { Box, Typography, List, Drawer } from "@mui/material";
-import { ListButton, ListLink } from "../../style/common/Header.styled";
+import { Box, Divider, Drawer, ListItemIcon } from "@mui/material";
+import {
+  ListButton,
+  ListLink,
+  NickToolbar,
+} from "../../style/common/SideBar.styled";
+
+import HomeIcon from "@mui/icons-material/Home";
+import RestaurantMenuIcon from "@mui/icons-material/RestaurantMenu";
+import MenuIcon from "@mui/icons-material/Menu";
+import PersonIcon from "@mui/icons-material/Person";
 
 interface Props {
   window?: () => Window;
 }
 
-const MobileHeader = (props: Props) => {
+const SideBar = (props: Props) => {
   const { window } = props;
-  const [mobileOpen, setMobileOpen] = useRecoilState(HeaderOpen);
-
-  const handleDrawerToggle = () => {
-    setMobileOpen(!mobileOpen);
-  };
+  const [open, setOpen] = useRecoilState(sideBarOpen);
 
   const container =
     window !== undefined ? () => window().document.body : undefined;
 
+  const handleSideBar = (e: React.MouseEvent) => setOpen((prev) => !prev);
+
+  const closeSideBar = () => setOpen(false);
+
   const drawer = (
-    <Box onClick={handleDrawerToggle} sx={{ textAlign: "center" }}>
-      <Typography variant="h6" sx={{ my: 2 }}>
-        <span>서브웨이</span>
-      </Typography>
-      <List>
-        <ListLink to="/">
-          <ListButton className={pathNav("") ? "path" : ""}>
-            <p>홈</p>
-          </ListButton>
-        </ListLink>
+    <>
+      <NickToolbar>1</NickToolbar>
 
-        <ListLink to="/menu">
-          <ListButton className={pathNav("menu") ? "path" : ""}>
-            <p>메뉴</p>
-          </ListButton>
-        </ListLink>
+      <Divider />
+      <ListLink to="/">
+        <ListButton
+          onClick={closeSideBar}
+          className={pathNav("") ? "path" : ""}
+        >
+          <ListItemIcon>
+            <HomeIcon fontSize="small" />
+          </ListItemIcon>
+          <span>메인</span>
+        </ListButton>
+      </ListLink>
 
-        <ListLink to="/make">
-          <ListButton className={pathNav("make") ? "path" : ""}>
-            <p>만들기</p>
-          </ListButton>
-        </ListLink>
+      <ListLink to="/menu">
+        <ListButton
+          onClick={closeSideBar}
+          className={pathNav("menu") ? "path" : ""}
+        >
+          <ListItemIcon>
+            <MenuIcon fontSize="small" />
+          </ListItemIcon>
+          <span>메뉴</span>
+        </ListButton>
+      </ListLink>
 
-        <ListLink to="/mypage">
-          <ListButton className={pathNav("mypage") ? "path" : ""}>
-            <p>마이페이지</p>
-          </ListButton>
-        </ListLink>
-      </List>
-    </Box>
+      <ListLink to="/make">
+        <ListButton
+          onClick={closeSideBar}
+          className={pathNav("make") ? "path" : ""}
+        >
+          <ListItemIcon>
+            <RestaurantMenuIcon fontSize="small" />
+          </ListItemIcon>
+          <span>만들기</span>
+        </ListButton>
+      </ListLink>
+
+      <ListLink to="/mypage">
+        <ListButton
+          onClick={closeSideBar}
+          className={pathNav("mypage") ? "path" : ""}
+        >
+          <ListItemIcon>
+            <PersonIcon fontSize="small" />
+          </ListItemIcon>
+          <span>마이페이지</span>
+        </ListButton>
+      </ListLink>
+    </>
   );
 
   return (
-    <Box component="nav">
+    <Box
+      component="nav"
+      sx={{ width: { sm: 240 }, flexShrink: { sm: 0 } }}
+      aria-label="mailbox folders"
+    >
       <Drawer
         container={container}
         variant="temporary"
-        open={mobileOpen}
-        onClose={handleDrawerToggle}
+        open={open}
+        onClose={handleSideBar}
         ModalProps={{
           keepMounted: true,
         }}
         sx={{
-          display: { xs: "block", sm: "none" },
+          display: { xs: "block", md: "none" },
           "& .MuiDrawer-paper": {
             boxSizing: "border-box",
             width: 240,
@@ -74,8 +109,22 @@ const MobileHeader = (props: Props) => {
       >
         {drawer}
       </Drawer>
+
+      <Drawer
+        variant="permanent"
+        sx={{
+          display: { xs: "none", md: "block" },
+          "& .MuiDrawer-paper": {
+            boxSizing: "border-box",
+            width: 200,
+          },
+        }}
+        open
+      >
+        {drawer}
+      </Drawer>
     </Box>
   );
 };
 
-export default MobileHeader;
+export default SideBar;
