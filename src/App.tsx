@@ -13,7 +13,7 @@ const App = () => {
     <BrowserRouter>
       <Header />
 
-      <Box sx={{ ml: { xs: 0, md: "200px" } }}>
+      <Box sx={{ ml: { xs: 0, md: "220px" } }}>
         <Routes>
           <Route path="/" element={<MainPage />} />
           <Route path="/menu" element={<MenuPage />} />
