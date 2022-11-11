@@ -6,7 +6,6 @@ import MakePage from "./pages/MakePage";
 import MyPage from "./pages/MyPage";
 
 import Header from "./components/common/Header";
-
 import { Box } from "@mui/material";
 
 const App = () => {
@@ -14,7 +13,7 @@ const App = () => {
     <BrowserRouter>
       <Header />
 
-      <Box component="main" sx={{ pt: { xs: 2, sm: 3 } }}>
+      <Box sx={{ ml: { xs: 0, md: "200px" } }}>
         <Routes>
           <Route path="/" element={<MainPage />} />
           <Route path="/menu" element={<MenuPage />} />
