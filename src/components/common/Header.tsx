@@ -1,7 +1,7 @@
 import { useSetRecoilState } from "recoil";
 import { sideBarOpen } from "../../atom/atom";
 
-import SideBar from "./SideBar";
+import SideBar from "./sideBar/SideBar";
 
 import { IconButton } from "@mui/material";
 import {
