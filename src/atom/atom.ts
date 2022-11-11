@@ -1,6 +1,6 @@
 import { atom } from "recoil";
 
-export const HeaderOpen = atom({
+export const sideBarOpen = atom({
   key: "mobile",
   default: false,
 });
