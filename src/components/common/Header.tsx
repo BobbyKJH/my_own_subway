@@ -1,82 +1,44 @@
-import { Link } from "react-router-dom";
-
 import { useSetRecoilState } from "recoil";
-import { HeaderOpen } from "../../atom/atom";
+import { sideBarOpen } from "../../atom/atom";
 
-import { pathNav } from "../../common/utils";
+import SideBar from "./SideBar";
 
-import MobileHeader from "./MobileHeader";
+import { IconButton } from "@mui/material";
+import {
+  NavBar,
+  NavBox,
+  NavTitleLink,
+  NavToolbar,
+} from "../../style/common/Header.styled";
 
 import MenuIcon from "@mui/icons-material/Menu";
-import {
-  Container,
-  AppBar,
-  Box,
-  IconButton,
-  Toolbar,
-  Typography,
-} from "@mui/material";
-import { LinkButton } from "../../style/common/Header.styled";
 
 const Header = () => {
-  const setMobileOpen = useSetRecoilState(HeaderOpen);
+  const setOpen = useSetRecoilState(sideBarOpen);
 
-  const handleDrawerToggle = () => {
-    setMobileOpen((prev) => !prev);
+  const handleDrawerToggle = (e: React.MouseEvent<HTMLButtonElement>) => {
+    setOpen((prev) => !prev);
   };
 
   return (
-    <Box
-      sx={{
-        display: "flex",
-        alignItems: "center",
-        position: "sticky",
-        top: 0,
-        zIndex: 99,
-      }}
-    >
-      <AppBar component="nav">
-        <Container maxWidth="lg">
-          <Toolbar>
-            <IconButton
-              color="inherit"
-              aria-label="open drawer"
-              edge="start"
-              onClick={handleDrawerToggle}
-              sx={{ mr: 2, display: { sm: "none" } }}
-            >
-              <MenuIcon />
-            </IconButton>
-            <Typography
-              variant="h6"
-              component="div"
-              sx={{ flexGrow: 1, textAlign: { xs: "right", sm: "left" } }}
-            >
-              <Link to="/">서브웨이 레시피</Link>
-            </Typography>
-            <Box sx={{ display: { xs: "none", sm: "block" } }}>
-              <LinkButton>
-                <Link to="/menu" className={pathNav("menu") ? "path" : ""}>
-                  메뉴
-                </Link>
-              </LinkButton>
-              <LinkButton>
-                <Link to="/make" className={pathNav("make") ? "path" : ""}>
-                  조합 만들기
-                </Link>
-              </LinkButton>
-              <LinkButton>
-                <Link to="/mypage" className={pathNav("mypage") ? "path" : ""}>
-                  마이페이지
-                </Link>
-              </LinkButton>
-            </Box>
-          </Toolbar>
-        </Container>
-      </AppBar>
+    <NavBox>
+      <NavBar>
+        <NavToolbar>
+          <IconButton
+            aria-label="open drawer"
+            edge="start"
+            onClick={handleDrawerToggle}
+            sx={{ mr: 2, display: { md: "none" }, color: "#fff" }}
+          >
+            <MenuIcon />
+          </IconButton>
 
-      <MobileHeader />
-    </Box>
+          <NavTitleLink to="/">서브웨이 메뉴</NavTitleLink>
+        </NavToolbar>
+      </NavBar>
+
+      <SideBar />
+    </NavBox>
   );
 };
 
