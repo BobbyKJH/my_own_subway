@@ -12,7 +12,7 @@ import {
   SideLink,
   SideMenu,
   SideText,
-} from "../../../style/common/SideBar.styled";
+} from "../../../style/common/SideBarContent.styled";
 import { Collapse, Divider, ListItemIcon, ListItemText } from "@mui/material";
 
 import HomeIcon from "@mui/icons-material/Home";
