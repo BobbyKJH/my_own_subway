@@ -2,6 +2,10 @@ import styled from "@emotion/styled";
 import { NavLink } from "react-router-dom";
 import { Button, ListItemButton, ListItemText, Toolbar } from "@mui/material";
 
+export const SideBarContainer = styled.div`
+  min-height: 751px;
+`;
+
 export const SideLink = styled(NavLink)`
   background-color: #fff;
   color: #009223;
@@ -28,6 +32,8 @@ export const SideMenu = styled.button`
   margin: 0;
   padding: 0;
   border: none;
+  width: 100%;
+  min-width: 204px;
   .path {
     background-color: #ffce32;
   }

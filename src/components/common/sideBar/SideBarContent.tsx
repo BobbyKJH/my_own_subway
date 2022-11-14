@@ -8,6 +8,7 @@ import { pathNav } from "../../../common/utils";
 import {
   MenuKindButton,
   NickToolbar,
+  SideBarContainer,
   SideButton,
   SideLink,
   SideMenu,
@@ -36,7 +37,7 @@ const SideBarContent = () => {
   };
 
   return (
-    <>
+    <SideBarContainer>
       <NickToolbar>1</NickToolbar>
 
       <Divider />
@@ -108,7 +109,7 @@ const SideBarContent = () => {
           <SideText primary="마이페이지" />
         </SideButton>
       </SideLink>
-    </>
+    </SideBarContainer>
   );
 };
 
