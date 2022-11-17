@@ -1,7 +1,7 @@
 import { useState } from "react";
 
-import { useSetRecoilState } from "recoil";
-import { menuUrl, sideBarOpen } from "../../../atom/atom";
+import { useRecoilValue, useSetRecoilState } from "recoil";
+import { menuUrl, nickSetting, sideBarOpen } from "../../../atom/atom";
 
 import { pathNav } from "../../../common/utils";
 
@@ -14,7 +14,13 @@ import {
   SideMenu,
   SideText,
 } from "../../../style/common/SideBarContent.styled";
-import { Collapse, Divider, ListItemIcon, ListItemText } from "@mui/material";
+import {
+  Button,
+  Collapse,
+  Divider,
+  ListItemIcon,
+  ListItemText,
+} from "@mui/material";
 
 import HomeIcon from "@mui/icons-material/Home";
 import MenuIcon from "@mui/icons-material/Menu";
@@ -23,6 +29,7 @@ import PersonIcon from "@mui/icons-material/Person";
 
 const SideBarContent = () => {
   const [menu, setMenu] = useState(true);
+  const nickName = useRecoilValue(nickSetting);
   const setOpen = useSetRecoilState(sideBarOpen);
   const setKind = useSetRecoilState(menuUrl);
 
@@ -38,7 +45,11 @@ const SideBarContent = () => {
 
   return (
     <SideBarContainer>
-      <NickToolbar>1</NickToolbar>
+      <NickToolbar>
+        <Button sx={{ width: "100%", p: 0, height: 64 }} size="large">
+          {nickName}
+        </Button>
+      </NickToolbar>
 
       <Divider />
 
