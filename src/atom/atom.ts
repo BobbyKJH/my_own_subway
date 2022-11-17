@@ -35,11 +35,6 @@ export const menuUrl = atom({
   effects: [menuStorage],
 });
 
-export const makeSequence = atom({
-  key: "make/Sequence",
-  default: "1",
-});
-
 export const recipeFamily = atomFamily({
   key: "make/Recipe",
   default: (menu): IMake => {
