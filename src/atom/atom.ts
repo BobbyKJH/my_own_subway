@@ -35,6 +35,11 @@ export const menuUrl = atom({
   effects: [menuStorage],
 });
 
+export const recipeOpen = atom<string | boolean>({
+  key: "recipe/Open",
+  default: "sandwich",
+});
+
 export const recipeFamily = atomFamily({
   key: "make/Recipe",
   default: (menu): IMake => {
