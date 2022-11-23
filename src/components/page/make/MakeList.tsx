@@ -1,4 +1,4 @@
-import { useRecoilState, useSetRecoilState } from "recoil";
+import { useSetRecoilState } from "recoil";
 import { recipeFamily, recipeOpen } from "../../../atom/atom";
 
 import { useQuery } from "react-query";
@@ -12,13 +12,21 @@ interface IMake {
   next: string;
 }
 
+interface IMenu {
+  id: string;
+  img: string;
+  name: string;
+  eng_name: string;
+  calorie: number;
+}
+
 const MakeList = ({ make, next }: IMake) => {
   const { isLoading, data: RecipeList } = useQuery(`make/${make}`, () =>
     menuList(`${make}`)
   );
   const setOpen = useSetRecoilState(recipeOpen);
 
-  const [recipe, setRecipe] = useRecoilState(recipeFamily(make));
+  const setRecipe = useSetRecoilState(recipeFamily(make));
 
   const selectMenu = (e: React.MouseEvent<HTMLDivElement>) => {
     const { dataset } = e.currentTarget;
@@ -31,29 +39,28 @@ const MakeList = ({ make, next }: IMake) => {
     setOpen(next);
   };
 
-  console.log(recipe);
   return (
     <div>
       {isLoading ? null : (
-        <Grid container spacing={1.5} sx={{ textAlign: "center" }}>
-          {RecipeList.map((list: any) => (
+        <Grid container spacing={1.5}>
+          {RecipeList.map((menu: IMenu) => (
             <Grid
               item
               md={4}
               xs={6}
-              sx={{ textAlign: "center" }}
-              key={list.id}
+              key={menu.id}
               onClick={selectMenu}
-              data-img={list.img}
-              data-name={list.name}
-              data-eng={list.eng_name}
-              data-calorie={list.calorie}
+              data-img={menu.img}
+              data-name={menu.name}
+              data-eng={menu.eng_name}
+              data-calorie={menu.calorie}
             >
               <MakeCard
-                img={list.img}
-                name={list.name}
-                eng={list.eng_name}
-                calorie={list.calorie}
+                menu={make}
+                img={menu.img}
+                name={menu.name}
+                eng={menu.eng_name}
+                calorie={menu.calorie}
               />
             </Grid>
           ))}
