@@ -1,3 +1,6 @@
+import { useRecoilValue } from "recoil";
+import { recipeFamily } from "../../../atom/atom";
+
 import {
   MakeCardCalorie,
   MakeCardContainer,
@@ -8,30 +11,35 @@ import {
 } from "../../../style/page/make/MakeCard.styled";
 
 interface IMakeCard {
-  img: string;
-  name: string;
-  eng: string;
-  calorie: number;
+  menu?: string;
+  img: string | undefined;
+  name: string | undefined;
+  eng: string | undefined;
+  calorie: number | undefined;
 }
 
-const MakeCard = ({ img, name, eng, calorie }: IMakeCard) => {
+const MakeCard = ({ menu, img, name, eng, calorie }: IMakeCard) => {
+  const menuState = useRecoilValue(recipeFamily(menu));
+
   return (
     <MakeCardContainer>
-      <MakeCardImage src={img} alt={name} />
+      <div className={menuState.name === name ? "select" : "card"}>
+        <MakeCardImage src={img} alt={name} />
 
-      <MakeCardContent>
-        <MakeCardName gutterBottom variant="h5" component="div">
-          {name}
-        </MakeCardName>
+        <MakeCardContent>
+          <MakeCardName gutterBottom variant="h5" component="div">
+            {name}
+          </MakeCardName>
 
-        <MakeCardEng gutterBottom variant="h5" component="div">
-          {eng}
-        </MakeCardEng>
+          <MakeCardEng gutterBottom variant="h5" component="div">
+            {eng}
+          </MakeCardEng>
+        </MakeCardContent>
 
         <MakeCardCalorie variant="body2" component="div">
           {calorie}Kcal
         </MakeCardCalorie>
-      </MakeCardContent>
+      </div>
     </MakeCardContainer>
   );
 };
