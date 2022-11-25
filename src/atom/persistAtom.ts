@@ -27,3 +27,9 @@ export const menuUrl = atom({
   default: "sandwich",
   effects: [menuStorage],
 });
+
+export const recipeResult = atom({
+  key: "recipe",
+  default: [],
+  effects: [resultStorage],
+});
