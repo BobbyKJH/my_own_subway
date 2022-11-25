@@ -1,7 +1,8 @@
 import { useState } from "react";
 
 import { useRecoilValue, useSetRecoilState } from "recoil";
-import { menuUrl, nickSetting, sideBarOpen } from "../../../atom/atom";
+import { sideBarOpen } from "../../../atom/atom";
+import { menuUrl, nickSetting } from "../../../atom/persistAtom";
 
 import { pathNav } from "../../../common/utils";
 

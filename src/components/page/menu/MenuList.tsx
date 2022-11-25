@@ -2,7 +2,7 @@ import { useQuery } from "react-query";
 import { menuList } from "../../../common/api";
 
 import { useRecoilValue } from "recoil";
-import { menuUrl } from "../../../atom/atom";
+import { menuUrl } from "../../../atom/persistAtom";
 
 import MenuCard from "./MenuCard";
 import Loading from "../../common/Loading";
