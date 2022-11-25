@@ -1,5 +1,4 @@
 import { atom, atomFamily, selector } from "recoil";
-import { recoilPersist } from "recoil-persist";
 
 interface IMake {
   img: string | undefined;
@@ -8,31 +7,9 @@ interface IMake {
   calorie: number | undefined;
 }
 
-const { persistAtom: menuStorage } = recoilPersist({
-  key: "menu/List",
-  storage: sessionStorage,
-});
-
-const { persistAtom: nickStorage } = recoilPersist({
-  key: "logIn/NickName",
-  storage: localStorage,
-});
-
-export const nickSetting = atom({
-  key: "setting/Nick",
-  default: "",
-  effects: [nickStorage],
-});
-
 export const sideBarOpen = atom({
   key: "mobile",
   default: false,
-});
-
-export const menuUrl = atom({
-  key: "menu/Url",
-  default: "sandwich",
-  effects: [menuStorage],
 });
 
 export const recipeOpen = atom<string | boolean>({
