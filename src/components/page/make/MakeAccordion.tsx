@@ -1,123 +1,119 @@
-import { SyntheticEvent, useState } from "react";
+import { SyntheticEvent } from "react";
 
-import { styled } from "@mui/material/styles";
-import ArrowForwardIosSharpIcon from "@mui/icons-material/ArrowForwardIosSharp";
-import MuiAccordion, { AccordionProps } from "@mui/material/Accordion";
-import MuiAccordionSummary, {
-  AccordionSummaryProps,
-} from "@mui/material/AccordionSummary";
-import MuiAccordionDetails from "@mui/material/AccordionDetails";
-import Typography from "@mui/material/Typography";
+import { useRecoilState } from "recoil";
+import { recipeOpen } from "../../../atom/atom";
+
 import MakeList from "./MakeList";
+import MakeResult from "./MakeReult";
 
-const Accordion = styled((props: AccordionProps) => (
-  <MuiAccordion disableGutters elevation={0} square {...props} />
-))(({ theme }) => ({
-  border: `1px solid ${theme.palette.divider}`,
-  "&:not(:last-child)": {
-    borderBottom: 0,
-  },
-  "&:before": {
-    display: "none",
-  },
-}));
-
-const AccordionSummary = styled((props: AccordionSummaryProps) => (
-  <MuiAccordionSummary
-    expandIcon={<ArrowForwardIosSharpIcon sx={{ fontSize: "0.9rem" }} />}
-    {...props}
-  />
-))(({ theme }) => ({
-  backgroundColor:
-    theme.palette.mode === "dark"
-      ? "rgba(255, 255, 255, .05)"
-      : "rgba(0, 0, 0, .03)",
-  flexDirection: "row-reverse",
-  "& .MuiAccordionSummary-expandIconWrapper.Mui-expanded": {
-    transform: "rotate(90deg)",
-  },
-  "& .MuiAccordionSummary-content": {
-    marginLeft: theme.spacing(1),
-  },
-}));
-
-const AccordionDetails = styled(MuiAccordionDetails)(({ theme }) => ({
-  padding: theme.spacing(2),
-  borderTop: "1px solid rgba(0, 0, 0, .125)",
-}));
+import {
+  MakeAccordionBox,
+  MakeAccordionContainer,
+  MakeAccordionDetails,
+  MakeAccordionSummary,
+} from "../../../style/page/make/MakeAccordion.styled";
 
 const MakeAccordion = () => {
-  const [expanded, setExpanded] = useState<string | false>("panel1");
+  const [open, setOpen] = useRecoilState(recipeOpen);
 
   const handleChange =
-    (panel: string) => (event: SyntheticEvent, newExpanded: boolean) => {
-      setExpanded(newExpanded ? panel : false);
+    (panel: string) => (e: SyntheticEvent, newExpanded: boolean) => {
+      setOpen(newExpanded ? panel : false);
     };
 
   return (
-    <div>
-      <Accordion
-        expanded={expanded === "panel1"}
-        onChange={handleChange("panel1")}
+    <MakeAccordionContainer>
+      <MakeAccordionBox
+        disableGutters
+        elevation={0}
+        square
+        expanded={open === "sandwich"}
+        onChange={handleChange("sandwich")}
       >
-        <AccordionSummary aria-controls="panel1d-content" id="panel1d-header">
-          <Typography sx={{ width: "100%", textAlign: "right" }}>
-            샌드위치
-          </Typography>
-        </AccordionSummary>
+        <MakeAccordionSummary
+          className={open === "sandwich" ? "select-menu" : "select-completion"}
+        >
+          <p>1. 샌드위치</p>
+        </MakeAccordionSummary>
 
-        <AccordionDetails>
-          <Typography component="div">
-            <MakeList make="sandwich" />
-          </Typography>
-        </AccordionDetails>
-      </Accordion>
+        <MakeAccordionDetails>
+          <MakeList make="sandwich" next="bread" />
+        </MakeAccordionDetails>
+      </MakeAccordionBox>
 
-      <Accordion
-        expanded={expanded === "panel2"}
-        onChange={handleChange("panel2")}
+      <MakeAccordionBox
+        disableGutters
+        elevation={0}
+        square
+        expanded={open === "bread"}
+        onChange={handleChange("bread")}
       >
-        <AccordionSummary aria-controls="panel2d-content" id="panel2d-header">
-          <Typography>빵</Typography>
-        </AccordionSummary>
+        <MakeAccordionSummary
+          className={open === "bread" ? "select-menu" : "select-completion"}
+        >
+          <p>2. 빵</p>
+        </MakeAccordionSummary>
 
-        <AccordionDetails>
-          <Typography component="div">
-            <MakeList make="bread" />
-          </Typography>
-        </AccordionDetails>
-      </Accordion>
+        <MakeAccordionDetails>
+          <MakeList make="bread" next="cheese" />
+        </MakeAccordionDetails>
+      </MakeAccordionBox>
 
-      <Accordion
-        expanded={expanded === "panel3"}
-        onChange={handleChange("panel3")}
+      <MakeAccordionBox
+        disableGutters
+        elevation={0}
+        square
+        expanded={open === "cheese"}
+        onChange={handleChange("cheese")}
       >
-        <AccordionSummary aria-controls="panel3d-content" id="panel3d-header">
-          <Typography>치즈</Typography>
-        </AccordionSummary>
+        <MakeAccordionSummary
+          className={open === "cheese" ? "select-menu" : "select-completion"}
+        >
+          <p>3. 치즈</p>
+        </MakeAccordionSummary>
 
-        <AccordionDetails>
-          <Typography component="div">
-            <MakeList make="cheese" />
-          </Typography>
-        </AccordionDetails>
-      </Accordion>
+        <MakeAccordionDetails>
+          <MakeList make="cheese" next="sauce" />
+        </MakeAccordionDetails>
+      </MakeAccordionBox>
 
-      <Accordion
-        expanded={expanded === "panel4"}
-        onChange={handleChange("panel4")}
+      <MakeAccordionBox
+        disableGutters
+        elevation={0}
+        square
+        expanded={open === "sauce"}
+        onChange={handleChange("sauce")}
       >
-        <AccordionSummary aria-controls="panel4d-content" id="panel4d-header">
-          <Typography>소스</Typography>
-        </AccordionSummary>
+        <MakeAccordionSummary
+          className={open === "sauce" ? "select-menu" : "select-completion"}
+        >
+          <p>4. 소스</p>
+        </MakeAccordionSummary>
 
-        <AccordionDetails>
-          <Typography component="div">
-            <MakeList make="sauce" />
-          </Typography>
-        </AccordionDetails>
-      </Accordion>
-    </div>
+        <MakeAccordionDetails>
+          <MakeList make="sauce" next="result" />
+        </MakeAccordionDetails>
+      </MakeAccordionBox>
+
+      <MakeAccordionBox
+        disableGutters
+        elevation={0}
+        square
+        expanded={open === "result"}
+        onChange={handleChange("result")}
+        TransitionProps={{ unmountOnExit: true }}
+      >
+        <MakeAccordionSummary
+          className={open === "result" ? "select-menu" : "select-completion"}
+        >
+          <p>5. 결과</p>
+        </MakeAccordionSummary>
+
+        <MakeAccordionDetails>
+          <MakeResult />
+        </MakeAccordionDetails>
+      </MakeAccordionBox>
+    </MakeAccordionContainer>
   );
 };
 
