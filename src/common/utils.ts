@@ -7,3 +7,9 @@ export const pathNav = (content: string) => {
   }
   return pathname.includes(`/${content}`);
 };
+
+export const RecipeOutput = (idx: number) => {
+  const output = JSON.parse(localStorage.getItem("result/Recipe") as string)
+    .recipe[idx];
+  return output;
+};
