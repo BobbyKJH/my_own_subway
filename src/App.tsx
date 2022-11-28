@@ -7,6 +7,7 @@ import MyPage from "./pages/MyPage";
 
 import Header from "./components/common/Header";
 import { Box } from "@mui/material";
+import ResultPage from "./pages/ResultPage";
 
 const App = () => {
   return (
@@ -18,6 +19,7 @@ const App = () => {
           <Route path="/" element={<MainPage />} />
           <Route path="/menu" element={<MenuPage />} />
           <Route path="/make" element={<MakePage />} />
+          <Route path="/result" element={<ResultPage />} />
           <Route path="/mypage" element={<MyPage />} />
         </Routes>
       </Box>

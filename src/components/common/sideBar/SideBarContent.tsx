@@ -26,6 +26,7 @@ import {
 import HomeIcon from "@mui/icons-material/Home";
 import MenuIcon from "@mui/icons-material/Menu";
 import RestaurantMenuIcon from "@mui/icons-material/RestaurantMenu";
+import RestaurantIcon from "@mui/icons-material/Restaurant";
 import PersonIcon from "@mui/icons-material/Person";
 
 const SideBarContent = () => {
@@ -107,6 +108,18 @@ const SideBarContent = () => {
             <RestaurantMenuIcon fontSize="small" />
           </ListItemIcon>
           <SideText primary="만들기" />
+        </SideButton>
+      </SideLink>
+
+      <SideLink to="/result">
+        <SideButton
+          onClick={closeSideBar}
+          className={pathNav("result") ? "path" : ""}
+        >
+          <ListItemIcon>
+            <RestaurantIcon fontSize="small" />
+          </ListItemIcon>
+          <SideText primary="레시피" />
         </SideButton>
       </SideLink>
 
