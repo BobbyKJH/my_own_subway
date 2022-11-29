@@ -1,4 +1,4 @@
-import { useSetRecoilState } from "recoil";
+import { useRecoilValue, useSetRecoilState } from "recoil";
 import { recipeFamily, recipeOpen } from "../../../atom/atom";
 
 import { useQuery } from "react-query";
@@ -6,6 +6,7 @@ import { menuList } from "../../../common/api";
 
 import MakeCard from "./MakeCard";
 import { Grid } from "@mui/material";
+import Loading from "../../common/Loading";
 
 interface IMake {
   make: string;
@@ -20,13 +21,13 @@ interface IMenu {
   calorie: number;
 }
 
-const MakeList = ({ make, next }: IMake) => {
-  const { isLoading, data: RecipeList } = useQuery(`make/${make}`, () =>
-    menuList(`${make}`)
-  );
-  const setOpen = useSetRecoilState(recipeOpen);
+const MakeList = () => {
+  const openMenu = useRecoilValue(recipeOpen);
+  const setRecipe = useSetRecoilState(recipeFamily(openMenu));
 
-  const setRecipe = useSetRecoilState(recipeFamily(make));
+  const { isLoading, data: RecipeList } = useQuery(`make/${openMenu}`, () =>
+    menuList(openMenu)
+  );
 
   const selectMenu = (e: React.MouseEvent<HTMLDivElement>) => {
     const { dataset } = e.currentTarget;
@@ -36,12 +37,13 @@ const MakeList = ({ make, next }: IMake) => {
       eng_name: dataset.eng,
       calorie: Number(dataset.calorie),
     });
-    setOpen(next);
   };
 
   return (
-    <div>
-      {isLoading ? null : (
+    <div style={{ textAlign: "center" }}>
+      {isLoading ? (
+        <Loading />
+      ) : (
         <Grid container spacing={1.5}>
           {RecipeList.map((menu: IMenu) => (
             <Grid
@@ -56,7 +58,7 @@ const MakeList = ({ make, next }: IMake) => {
               data-calorie={menu.calorie}
             >
               <MakeCard
-                menu={make}
+                menu={openMenu}
                 img={menu.img}
                 name={menu.name}
                 eng={menu.eng_name}
