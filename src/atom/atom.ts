@@ -12,9 +12,14 @@ export const sideBarOpen = atom({
   default: false,
 });
 
-export const recipeOpen = atom<string | boolean>({
+export const recipeOpen = atom<string>({
   key: "recipe/Open",
   default: "sandwich",
+});
+
+export const recipeResultOpen = atom({
+  key: "result/Open",
+  default: false,
 });
 
 export const recipeFamily = atomFamily({
