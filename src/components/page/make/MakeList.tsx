@@ -5,13 +5,9 @@ import { useQuery } from "react-query";
 import { menuList } from "../../../common/api";
 
 import MakeCard from "./MakeCard";
-import { Grid } from "@mui/material";
 import Loading from "../../common/Loading";
 
-interface IMake {
-  make: string;
-  next: string;
-}
+import { Grid } from "@mui/material";
 
 interface IMenu {
   id: string;
