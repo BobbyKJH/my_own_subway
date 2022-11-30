@@ -1,4 +1,4 @@
-import ReactDOM from "react-dom/client";
+import ReactDOM from "react-dom";
 
 import App from "./App";
 
@@ -11,12 +11,13 @@ import { ReactQueryDevtools } from "react-query/devtools";
 
 const queryClient = new QueryClient();
 
-ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
+ReactDOM.render(
   <QueryClientProvider client={queryClient}>
     <RecoilRoot>
       <GlobalStyle />
       <App />
       <ReactQueryDevtools initialIsOpen={true} />
     </RecoilRoot>
-  </QueryClientProvider>
+  </QueryClientProvider>,
+  document.getElementById("root") as HTMLElement
 );
