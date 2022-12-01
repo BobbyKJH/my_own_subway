@@ -4,6 +4,7 @@ import { Button, ListItemButton, ListItemText, Toolbar } from "@mui/material";
 
 export const SideBarContainer = styled.div`
   min-height: 751px;
+  background-color: #fff;
 `;
 
 export const SideLink = styled(NavLink)`
