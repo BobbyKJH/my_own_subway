@@ -7,17 +7,17 @@ interface IMake {
   calorie: number | undefined;
 }
 
-export const sideBarOpen = atom({
+export const sideBarOpen = atom<boolean>({
   key: "mobile",
   default: false,
 });
 
-export const recipeOpen = atom<string>({
+export const recipeOpen = atom<number>({
   key: "recipe/Open",
-  default: "sandwich",
+  default: 0,
 });
 
-export const recipeResultOpen = atom({
+export const recipeResultOpen = atom<boolean>({
   key: "result/Open",
   default: false,
 });
