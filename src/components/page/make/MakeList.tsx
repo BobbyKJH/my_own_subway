@@ -1,4 +1,4 @@
-import { useRecoilValue, useSetRecoilState } from "recoil";
+import { useSetRecoilState } from "recoil";
 import { recipeFamily, recipeOpen } from "../../../atom/atom";
 
 import { useQuery } from "react-query";
@@ -8,6 +8,7 @@ import MakeCard from "./MakeCard";
 import Loading from "../../common/Loading";
 
 import { Grid } from "@mui/material";
+import { MakeListContainer } from "../../../style/page/make/MakeList.styled";
 
 interface IMenu {
   id: string;
@@ -17,12 +18,12 @@ interface IMenu {
   calorie: number;
 }
 
-const MakeList = () => {
-  const openMenu = useRecoilValue(recipeOpen);
-  const setRecipe = useSetRecoilState(recipeFamily(openMenu));
+const MakeList = ({ select }: { select: string }) => {
+  const setChangeRecipe = useSetRecoilState(recipeOpen);
+  const setRecipe = useSetRecoilState(recipeFamily(select));
 
-  const { isLoading, data: RecipeList } = useQuery(`make/${openMenu}`, () =>
-    menuList(openMenu)
+  const { isLoading, data: RecipeList } = useQuery(`make/${select}`, () =>
+    menuList(select)
   );
 
   const selectMenu = (e: React.MouseEvent<HTMLDivElement>) => {
@@ -33,10 +34,11 @@ const MakeList = () => {
       eng_name: dataset.eng,
       calorie: Number(dataset.calorie),
     });
+    setChangeRecipe((prev) => prev + 1);
   };
 
   return (
-    <div style={{ textAlign: "center" }}>
+    <MakeListContainer>
       {isLoading ? (
         <Loading />
       ) : (
@@ -54,7 +56,7 @@ const MakeList = () => {
               data-calorie={menu.calorie}
             >
               <MakeCard
-                menu={openMenu}
+                menu={select}
                 img={menu.img}
                 name={menu.name}
                 eng={menu.eng_name}
@@ -64,7 +66,7 @@ const MakeList = () => {
           ))}
         </Grid>
       )}
-    </div>
+    </MakeListContainer>
   );
 };
 
