@@ -1,22 +1,22 @@
-import { Grid } from "@mui/material";
-import MakeCard from "./MakeCard";
+import { useRecoilValue } from "recoil";
+import { recipeFamily } from "../../../atom/atom";
 
-const MakeResultCard = ({ menu }: any) => {
+import { Grid } from "@mui/material";
+import {
+  MakeResultCardEng,
+  MakeResultCardImg,
+  MakeResultCardName,
+} from "../../../style/page/make/MakeResultCard.styled";
+
+const MakeResultCard = ({ menu, num }: { menu: string; num: number }) => {
+  const resultMenu = useRecoilValue(recipeFamily(menu));
+
   return (
-    <>
-      {menu.name === "" ? (
-        <p>111</p>
-      ) : (
-        <Grid item xs={6}>
-          <MakeCard
-            img={menu.img}
-            name={menu.name}
-            eng={menu.eng_name}
-            calorie={menu.calorie}
-          />
-        </Grid>
-      )}
-    </>
+    <Grid item xs={num}>
+      <MakeResultCardImg src={resultMenu.img} alt={resultMenu.name} />
+      <MakeResultCardName>{resultMenu.name}</MakeResultCardName>
+      <MakeResultCardEng>{resultMenu.eng_name}</MakeResultCardEng>
+    </Grid>
   );
 };
 
