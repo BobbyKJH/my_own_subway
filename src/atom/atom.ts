@@ -7,6 +7,13 @@ interface IMake {
   calorie: number | undefined;
 }
 
+interface ISauce {
+  img: any[];
+  name: any[];
+  eng: any[];
+  calorie: any[];
+}
+
 export const sideBarOpen = atom<boolean>({
   key: "mobile",
   default: false,
@@ -34,19 +41,27 @@ export const recipeFamily = atomFamily({
   },
 });
 
+export const recipeSauce = atom<ISauce>({
+  key: "make/Sauce",
+  default: {
+    img: [],
+    name: [],
+    eng: [],
+    calorie: [],
+  },
+});
+
 export const recipeCalorie = selector({
   key: "recipe/calorie",
   get: ({ get }) => {
     const sandwich = get(recipeFamily("sandwich")).calorie;
     const bread = get(recipeFamily("bread")).calorie;
     const cheese = get(recipeFamily("cheese")).calorie;
-    const sauce = get(recipeFamily("sauce")).calorie;
     return (
       sandwich !== undefined &&
       bread !== undefined &&
       cheese !== undefined &&
-      sauce !== undefined &&
-      sandwich + bread + cheese + sauce
+      sandwich + bread + cheese
     );
   },
 });
