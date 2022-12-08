@@ -38,11 +38,13 @@ const MakeList = ({ select }: { select: string }) => {
   };
 
   return (
-    <MakeListContainer>
+    <MakeListContainer container spacing={1.5}>
       {isLoading ? (
-        <Loading />
+        <Grid item md={4} xs={6}>
+          <Loading />
+        </Grid>
       ) : (
-        <Grid container spacing={1.5}>
+        <>
           {RecipeList.map((menu: IMenu) => (
             <Grid
               item
@@ -64,7 +66,7 @@ const MakeList = ({ select }: { select: string }) => {
               />
             </Grid>
           ))}
-        </Grid>
+        </>
       )}
     </MakeListContainer>
   );
