@@ -1,5 +1,5 @@
 import { useRecoilValue } from "recoil";
-import { recipeSauce } from "../../../atom/atom";
+import { recipeSauce } from "../../../../atom/atom";
 
 import {
   MakeCardCalorie,
@@ -8,7 +8,7 @@ import {
   MakeCardEng,
   MakeCardImage,
   MakeCardName,
-} from "../../../style/page/make/MakeCard.styled";
+} from "../../../../style/page/make/MakeCard.styled";
 
 interface IMakeCard {
   img: string | undefined;

@@ -1,5 +1,5 @@
 import { useRecoilValue } from "recoil";
-import { recipeSauce } from "../../../atom/atom";
+import { recipeSauce } from "../../../../atom/atom";
 
 import { Grid } from "@mui/material";
 import {
@@ -7,7 +7,7 @@ import {
   SauceEng,
   SauceImage,
   SauceName,
-} from "../../../style/page/make/MakeSauce.styled";
+} from "../../../../style/page/make/MakeSauce.styled";
 
 const MakeSauce = () => {
   const { img: Img, name: Name, eng: Eng_Name } = useRecoilValue(recipeSauce);
