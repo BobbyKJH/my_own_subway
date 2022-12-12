@@ -1,4 +1,4 @@
-import { atom, atomFamily, selector } from "recoil";
+import { atom, atomFamily } from "recoil";
 
 interface IMake {
   img: string | undefined;
@@ -29,6 +29,11 @@ export const recipeResultOpen = atom<boolean>({
   default: false,
 });
 
+export const makeError = atom<boolean>({
+  key: "make/Error",
+  default: false,
+});
+
 export const recipeFamily = atomFamily({
   key: "make/Recipe",
   default: (menu): IMake => {
@@ -48,20 +53,5 @@ export const recipeSauce = atom<ISauce>({
     name: [],
     eng: [],
     calorie: [],
-  },
-});
-
-export const recipeCalorie = selector({
-  key: "recipe/calorie",
-  get: ({ get }) => {
-    const sandwich = get(recipeFamily("sandwich")).calorie;
-    const bread = get(recipeFamily("bread")).calorie;
-    const cheese = get(recipeFamily("cheese")).calorie;
-    return (
-      sandwich !== undefined &&
-      bread !== undefined &&
-      cheese !== undefined &&
-      sandwich + bread + cheese
-    );
   },
 });
