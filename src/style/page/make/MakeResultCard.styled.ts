@@ -9,11 +9,11 @@ export const MakeResultCardImg = styled.img`
 export const MakeResultCardName = styled.p`
   text-align: center;
   color: #009223;
-  font-size: 0.9rem;
-  line-height: 25px;
+  font-size: 0.6rem;
+  line-height: 15px;
 `;
 
 export const MakeResultCardEng = styled(MakeResultCardName)`
   color: #ffce32;
-  font-size: 0.7rem;
+  font-size: 0.5rem;
 `;
