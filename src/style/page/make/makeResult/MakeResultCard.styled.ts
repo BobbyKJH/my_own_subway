@@ -1,4 +1,9 @@
 import styled from "@emotion/styled";
+import { Grid } from "@mui/material";
+
+export const MakeResultCardGrid = styled(Grid)`
+  display: inline-block;
+`;
 
 export const MakeResultCardImg = styled.img`
   display: block;
