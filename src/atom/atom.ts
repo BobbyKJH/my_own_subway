@@ -24,7 +24,7 @@ export const recipeOpen = atom<number>({
   default: 0,
 });
 
-export const recipeResultOpen = atom<boolean>({
+export const makeResult = atom<boolean>({
   key: "result/Open",
   default: false,
 });
