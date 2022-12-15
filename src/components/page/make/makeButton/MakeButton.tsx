@@ -1,8 +1,10 @@
 import { useRecoilState, useRecoilValue, useSetRecoilState } from "recoil";
 import { makeError, recipeFamily, recipeOpen } from "../../../../atom/atom";
 
-import { Grid } from "@mui/material";
-import { MoveBtn } from "../../../../style/page/make/makeButton/MakeButton.styled";
+import {
+  MakeButtonGrid,
+  MoveBtn,
+} from "../../../../style/page/make/makeButton/MakeButton.styled";
 
 import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
@@ -22,7 +24,7 @@ const MakeButton = ({ select }: { select: string }) => {
 
   return (
     <>
-      <Grid item xs={12} sx={{ justifyContent: "center", display: "flex" }}>
+      <MakeButtonGrid item xs={12}>
         <MoveBtn onClick={previousBtn}>
           <ArrowBackIcon fontSize="medium" />
         </MoveBtn>
@@ -30,7 +32,7 @@ const MakeButton = ({ select }: { select: string }) => {
         <MoveBtn onClick={nextBtn}>
           <ArrowForwardIcon fontSize="medium" />
         </MoveBtn>
-      </Grid>
+      </MakeButtonGrid>
     </>
   );
 };

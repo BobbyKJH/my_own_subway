@@ -1,5 +1,10 @@
 import styled from "@emotion/styled";
-import { Button } from "@mui/material";
+import { Button, Grid } from "@mui/material";
+
+export const MakeButtonGrid = styled(Grid)`
+  display: flex;
+  justify-content: center;
+`;
 
 export const MoveBtn = styled(Button)`
   margin: 10px;
