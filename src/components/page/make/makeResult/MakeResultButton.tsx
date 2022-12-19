@@ -1,34 +1,38 @@
-import { useRecoilState, useRecoilValue } from "recoil";
-import { recipeFamily } from "../../../atom/atom";
-import { recipeResult } from "../../../atom/persistAtom";
+import { useNavigate } from "react-router-dom";
+
+import { useRecoilValue, useSetRecoilState } from "recoil";
+import { recipeFamily, recipeSauce } from "../../../../atom/atom";
+import { recipeResult } from "../../../../atom/persistAtom";
+
+import useReset from "../../../../hooks/useReset";
 
 const MakeResultButton = () => {
-  const [result, setResult] = useRecoilState(recipeResult);
+  const navigation = useNavigate();
+  const { resetState } = useReset();
+
+  const setResult = useSetRecoilState(recipeResult);
+
   const resultSandwich = useRecoilValue(recipeFamily("sandwich"));
   const resultBread = useRecoilValue(recipeFamily("bread"));
   const resultCheese = useRecoilValue(recipeFamily("cheese"));
-  const resultSauce = useRecoilValue(recipeFamily("sauce"));
 
-  const resultCard = JSON.parse(
-    localStorage.getItem("result/Recipe") as string
-  );
+  const resultSauce = useRecoilValue(recipeSauce);
 
-  console.log(resultCard.recipe[0]);
-  const resultMake = (e: any | never) => {
-    setResult([resultSandwich, resultBread, resultCheese, resultSauce]);
+  const resultMake = (e: React.MouseEvent<HTMLButtonElement>) => {
+    setResult({
+      sandwich: resultSandwich,
+      bread: resultBread,
+      cheese: resultCheese,
+      sauce: resultSauce,
+    });
+    navigation("/result");
   };
+
   return (
-    <button
-      style={{
-        position: "absolute",
-        transform: "translate(-50%, -50%)",
-        top: "50%",
-        left: "50%",
-      }}
-      onClick={resultMake}
-    >
-      1
-    </button>
+    <>
+      <button onClick={resultMake}>완성</button>
+      <button onClick={resetState}>다시 선택</button>
+    </>
   );
 };
 
