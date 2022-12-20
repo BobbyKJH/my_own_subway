@@ -66,6 +66,8 @@ const MakeResultDialog = () => {
 
             <MakeSauce />
           </Grid>
+
+          <MakeResultButton />
         </MakeResultBox>
       </List>
     </Dialog>
