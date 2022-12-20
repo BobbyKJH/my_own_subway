@@ -1,11 +1,12 @@
-import { useSetRecoilState } from "recoil";
-import { recipeFamily, recipeOpen } from "../../../atom/atom";
-
 import { useQuery } from "react-query";
 import { menuList } from "../../../common/api";
 
 import MakeCard from "./MakeCard";
+import MakeButton from "./makeButton/MakeButton";
 import Loading from "../../common/Loading";
+import MakeError from "./MakeError";
+
+import useMake from "../../../hooks/useMake";
 
 import { Grid } from "@mui/material";
 import { MakeListContainer } from "../../../style/page/make/MakeList.styled";
@@ -19,26 +20,16 @@ interface IMenu {
 }
 
 const MakeList = ({ select }: { select: string }) => {
-  const setChangeRecipe = useSetRecoilState(recipeOpen);
-  const setRecipe = useSetRecoilState(recipeFamily(select));
-
   const { isLoading, data: RecipeList } = useQuery(`make/${select}`, () =>
     menuList(select)
   );
 
-  const selectMenu = (e: React.MouseEvent<HTMLDivElement>) => {
-    const { dataset } = e.currentTarget;
-    setRecipe({
-      img: dataset.img,
-      name: dataset.name,
-      eng_name: dataset.eng,
-      calorie: Number(dataset.calorie),
-    });
-    setChangeRecipe((prev) => prev + 1);
-  };
+  const { selectMenu } = useMake(select);
 
   return (
     <MakeListContainer container spacing={1.5}>
+      <MakeButton select={select} />
+
       {isLoading ? (
         <Grid item md={4} xs={6}>
           <Loading />
@@ -68,6 +59,7 @@ const MakeList = ({ select }: { select: string }) => {
           ))}
         </>
       )}
+      <MakeError />
     </MakeListContainer>
   );
 };
