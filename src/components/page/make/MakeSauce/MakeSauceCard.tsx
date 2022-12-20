@@ -11,10 +11,10 @@ import {
 } from "../../../../style/page/make/MakeCard.styled";
 
 interface IMakeCard {
-  img: string | undefined;
-  name: string | undefined;
-  eng: string | undefined;
-  calorie: number | undefined;
+  img: string;
+  name: string;
+  eng: string;
+  calorie: number;
 }
 
 const MakeSauceCard = ({ img, name, eng, calorie }: IMakeCard) => {
@@ -24,7 +24,7 @@ const MakeSauceCard = ({ img, name, eng, calorie }: IMakeCard) => {
     <MakeCardContainer>
       <div
         className={
-          menuSauce.name.slice(0, 3).includes(name) ? "select" : "card"
+          menuSauce.name.slice(0, 3).includes(String(name)) ? "select" : "card"
         }
       >
         <MakeCardImage src={img} alt={name} />
