@@ -1,14 +1,13 @@
 import { useQuery } from "react-query";
 
-import { useRecoilState } from "recoil";
-import { recipeSauce } from "../../../../atom/atom";
-
 import { menuList } from "../../../../common/api";
 
 import MakeSauceCard from "./MakeSauceCard";
 import MakeSauceButton from "../makeButton/MakeSauceButton";
-import Loading from "../../../common/Loading";
 import MakeResultDialog from "../makeResult/MakeResultDialog";
+import Loading from "../../../common/Loading";
+
+import useMake from "../../../../hooks/useMake";
 
 import { Grid } from "@mui/material";
 
@@ -25,20 +24,7 @@ const MakeSauceList = () => {
     menuList("sauce")
   );
 
-  const [sauce, setSauce] = useRecoilState(recipeSauce);
-
-  const selectSauce = (e: React.MouseEvent<HTMLDivElement>) => {
-    const { dataset } = e.currentTarget;
-    if (sauce.name.slice(0, 3).find((name) => name === dataset.name)) {
-      return alert("이미 선택하신 소스 입니다.");
-    }
-    setSauce({
-      img: [dataset.img, ...sauce.img],
-      name: [dataset.name, ...sauce.name],
-      eng: [dataset.eng, ...sauce.eng],
-      calorie: [Number(dataset.calorie), ...sauce.calorie],
-    });
-  };
+  const { selectMenuSauce } = useMake();
 
   return (
     <Grid container spacing={1.5} sx={{ textAlign: "center" }}>
@@ -54,7 +40,7 @@ const MakeSauceList = () => {
               md={4}
               xs={6}
               key={menu.id}
-              onClick={selectSauce}
+              onClick={selectMenuSauce}
               data-img={menu.img}
               data-name={menu.name}
               data-eng={menu.eng_name}
