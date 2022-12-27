@@ -1,11 +1,13 @@
-import Box from "@mui/material/Box";
-import LinearProgress from "@mui/material/LinearProgress";
+import { CircularProgress } from "@mui/material";
+import { LoadingBox, LoadingScreen } from "../../style/common/Loading.styled";
 
 const Loading = () => {
   return (
-    <Box sx={{ width: "100%" }}>
-      <LinearProgress />
-    </Box>
+    <LoadingScreen>
+      <LoadingBox>
+        <CircularProgress />
+      </LoadingBox>
+    </LoadingScreen>
   );
 };
 
