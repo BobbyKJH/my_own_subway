@@ -13,7 +13,7 @@
     "@emotion/styled": "^11.10.5",
     "@mui/icons-material": "^5.10.9",
     "@mui/lab": "^5.0.0-alpha.107",
-    "@mui/material": "^5.11.0",
+    "@mui/material": "^5.11.2",
     "@types/axios": "^0.14.0",
     "@types/react-query": "^1.2.9",
     "@types/react-router-dom": "^5.3.3",

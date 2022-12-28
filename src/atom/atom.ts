@@ -1,17 +1,17 @@
 import { atom, atomFamily } from "recoil";
 
 interface IMake {
-  img: string | undefined;
-  name: string | undefined;
-  eng_name: string | undefined;
-  calorie: number | undefined;
+  img: string;
+  name: string;
+  eng_name: string;
+  calorie: number;
 }
 
 interface ISauce {
-  img: any[];
-  name: any[];
-  eng: any[];
-  calorie: any[];
+  img: string[];
+  name: string[];
+  eng: string[];
+  calorie: number[];
 }
 
 export const sideBarOpen = atom<boolean>({
@@ -30,7 +30,7 @@ export const makeResult = atom<boolean>({
 });
 
 export const makeError = atom<boolean>({
-  key: "make/Error",
+  key: "error",
   default: false,
 });
 
