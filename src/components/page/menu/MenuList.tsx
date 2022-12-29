@@ -23,7 +23,7 @@ const MenuList = () => {
   const { isLoading, data: menu } = useQuery(`${kind}`, () => menuList(kind));
 
   return (
-    <div>
+    <>
       {isLoading ? (
         <Loading />
       ) : (
@@ -51,7 +51,7 @@ const MenuList = () => {
           ))}
         </Grid>
       )}
-    </div>
+    </>
   );
 };
 
