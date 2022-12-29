@@ -3,8 +3,8 @@ import { menuList } from "../../../common/api";
 
 import MakeCard from "./MakeCard";
 import MakeButton from "./makeButton/MakeButton";
-import Loading from "../../common/Loading";
 import MakeError from "./MakeError";
+import Loading from "../../common/Loading";
 
 import useMake from "../../../hooks/useMake";
 
@@ -31,7 +31,7 @@ const MakeList = ({ select }: { select: string }) => {
       <MakeButton select={select} />
 
       {isLoading ? (
-        <Grid item md={4} xs={6}>
+        <Grid item xs={12}>
           <Loading />
         </Grid>
       ) : (
@@ -59,6 +59,7 @@ const MakeList = ({ select }: { select: string }) => {
           ))}
         </>
       )}
+
       <MakeError />
     </MakeListContainer>
   );
