@@ -10,6 +10,7 @@ import Loading from "../../../common/Loading";
 import useMake from "../../../../hooks/useMake";
 
 import { Grid } from "@mui/material";
+import { MakeListContainer } from "../../../../style/page/make/MakeList.styled";
 
 interface ISauce {
   id: number;
@@ -27,11 +28,13 @@ const MakeSauceList = () => {
   const { selectMenuSauce } = useMake();
 
   return (
-    <Grid container spacing={1.5} sx={{ textAlign: "center" }}>
+    <MakeListContainer container spacing={1.5}>
       <MakeSauceButton />
 
       {isLoading ? (
-        <Loading />
+        <Grid item xs={12}>
+          <Loading />
+        </Grid>
       ) : (
         <>
           {RecipeList.map((menu: ISauce) => (
@@ -58,7 +61,7 @@ const MakeSauceList = () => {
       )}
 
       <MakeResultDialog />
-    </Grid>
+    </MakeListContainer>
   );
 };
 
