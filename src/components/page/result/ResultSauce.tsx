@@ -19,7 +19,7 @@ const ResultSauce = () => {
   return (
     <Grid container spacing={0}>
       <ResultSauceContainer>
-        {Image.map((img: string) => (
+        {Image.slice(0, 3).map((img: string) => (
           <Grid item xs={4} key={img}>
             <ResultSauceImage src={img} />
           </Grid>
@@ -27,7 +27,7 @@ const ResultSauce = () => {
       </ResultSauceContainer>
 
       <ResultSauceContainer>
-        {Name.map((name: string) => (
+        {Name.slice(0, 3).map((name: string) => (
           <ResultSauceName item xs={4} key={name}>
             {name}
           </ResultSauceName>
@@ -35,7 +35,7 @@ const ResultSauce = () => {
       </ResultSauceContainer>
 
       <ResultSauceContainer>
-        {Eng_Name.map((eng: string) => (
+        {Eng_Name.slice(0, 3).map((eng: string) => (
           <ResultSauceEng item xs={4} key={eng}>
             {eng}
           </ResultSauceEng>
