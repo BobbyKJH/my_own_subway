@@ -3,18 +3,28 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import MainPage from "./pages/MainPage";
 import MenuPage from "./pages/MenuPage";
 import MakePage from "./pages/MakePage";
+import ResultPage from "./pages/ResultPage";
 import MyPage from "./pages/MyPage";
 
 import Header from "./components/common/Header";
+import Footer from "./components/common/Footer";
+
 import { Box } from "@mui/material";
-import ResultPage from "./pages/ResultPage";
 
 const App = () => {
   return (
-    <BrowserRouter>
+    <>
       <Header />
 
-      <Box sx={{ ml: { xs: 0, md: "220px" } }}>
+      <Box
+        sx={{
+          ml: {
+            xs: 0,
+            md: "220px",
+          },
+          mb: { xs: 10, mb: 0 },
+        }}
+      >
         <Routes>
           <Route path="/" element={<MainPage />} />
           <Route path="/menu" element={<MenuPage />} />
@@ -23,7 +33,9 @@ const App = () => {
           <Route path="/mypage" element={<MyPage />} />
         </Routes>
       </Box>
-    </BrowserRouter>
+
+      <Footer />
+    </>
   );
 };
 
